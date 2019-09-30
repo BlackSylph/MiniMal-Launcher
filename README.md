@@ -1,4 +1,4 @@
-# MiniMal-Launcher
+# MiniMal Launcher
 Rainmeter skin
 
 *THE EVOLUTION OF MINIMAL DESKTOP*
