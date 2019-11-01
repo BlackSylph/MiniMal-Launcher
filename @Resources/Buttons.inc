@@ -1,9 +1,8 @@
 [ExtraButton]
-Meter=Button
-ButtonImage=#@#Images\zpecial.png
-X=#XTRA#
-Y=#YSTART#
-ButtonCommand=[!ToggleConfig "MiniMal\Settings" "Settings.ini"]
+Meter=Shape
+Shape=Path drawTriangle | Fill Color #MainColor#
+drawTriangle=(#XTRA# - 1), (#YSTART# - 0.5) | LineTo (#XTRA# + 49), #YSTART# | LineTo (#XTRA# - 1), (#YSTART# + 51.5) | ClosePath 1
+LeftMouseUpAction=[!ToggleConfig "MiniMal\Settings" "Settings.ini"]
 
 [ButtonA]
 Meter=Shape
