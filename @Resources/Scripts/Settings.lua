@@ -6,79 +6,62 @@ function Update()
 
 	local AddNameVariable = SKIN:GetVariable('AddName')
 	local AddPathVariable = SKIN:GetVariable('AddPath')
+	local AddParametersVariable = SKIN:GetVariable('AddParameters')
 	local RemoveNameVariable = SKIN:GetVariable('RemoveName')
 	local ButtonPressedVariable = SKIN:GetVariable('ButtonPressed')
 
 	if ButtonPressedVariable == '0' then
-
 		if AddNameVariable == 'Program name' and AddPathVariable == 'Program path' then
 
 			local SuccessInputHidden = SKIN:GetVariable('SuccessInputHidden')
 			if SuccessInputHidden == '0' then
-
 				SKIN:Bang('!SetVariable', 'SuccessInputHidden', '1')
-
 			end
 
 			local WrongInputHidden = SKIN:GetVariable('WrongInputHidden')
 			if WrongInputHidden == '1' then
-
 				SKIN:Bang('!SetVariable', 'WrongInputHidden', '0')
-
 			end
 
 		else
 
 			local WrongInputHidden = SKIN:GetVariable('WrongInputHidden')
 			if WrongInputHidden == '0' then
-
 				SKIN:Bang('!SetVariable', 'WrongInputHidden', '1')
-
 			end
 
 			local SuccessInputHidden = SKIN:GetVariable('SuccessInputHidden')
 			if SuccessInputHidden == '1' then
-
 				SKIN:Bang('!SetVariable', 'SuccessInputHidden', '0')
-
 			end
 
-			add(AddNameVariable, AddPathVariable)
+			add(AddNameVariable, AddPathVariable, AddParametersVariable)
 
 		end
 
 	elseif ButtonPressedVariable == '1' then
-
 		if RemoveNameVariable == 'Program name' then
 
 			local SuccessInputHidden = SKIN:GetVariable('SuccessInputHidden')
 			if SuccessInputHidden == '0' then
-
 				SKIN:Bang('!SetVariable', 'SuccessInputHidden', '1')
-
 			end
 
 			local WrongInputHidden = SKIN:GetVariable('WrongInputHidden')
 			if WrongInputHidden == '1' then
-
 				SKIN:Bang('!SetVariable', 'WrongInputHidden', '0')
-
 			end
 
 		else
 
 			local WrongInputHidden = SKIN:GetVariable('WrongInputHidden')
 			if WrongInputHidden == '0' then
-
 				SKIN:Bang('!SetVariable', 'WrongInputHidden', '1')
-
 			end
 
 			local SuccessInputHidden = SKIN:GetVariable('SuccessInputHidden')
 			if SuccessInputHidden == '1' then
-
 				SKIN:Bang('!SetVariable', 'SuccessInputHidden', '0')
-
 			end
 
 			remove(RemoveNameVariable)
@@ -92,7 +75,7 @@ function Update()
 
 end
 
-add = function(name, path)
+add = function(name, path, parameters)
 
 	-- READ APPLICATIONNAMES.INC --
 	ApplicationNames = readApplicationFile(SKIN:GetVariable("@") .. '\\ApplicationNames.inc')
@@ -103,7 +86,11 @@ add = function(name, path)
 	-- LOAD APPLICATIONNAMES.INC & APPLICATIONPATHS.INC --
 	loadApplicationFiles(ApplicationNames, ApplicationPaths)
 
-	matrix[name] = path
+	if parameters == 'Launch parameters (optional)' then
+		matrix[name] = path
+	else
+		matrix[name] = path .. ' "' .. parameters ..'"'
+	end
 
 	writeFiles()
 
@@ -167,7 +154,6 @@ loadApplicationFiles = function(ApplicationNames, ApplicationPaths)
 
 	matrix = {}
 	for i = 1, #ApplicationNames do
-
 		matrix[ApplicationNames[i]] = ApplicationPaths[i]
 	end
 
@@ -257,35 +243,23 @@ applications = function(matrix)
 
 		local currLetter = string.upper(string.sub(k, 1, 1))
 		if i == 0 then
-
 			lastLetter = currLetter
-
 		else
-
 			if lastLetter == currLetter then
-
 				counter_Y = counter_Y + 1
-
 			else
-
 				lastLetter = currLetter
 				counter_Y = 0
-
 			end
-
 		end
 
 		local VAR_0 = string.upper(string.sub(k, 1, 1)) .. tostring(counter_Y)
 
 		local VAR_1 = ''
 		if i < 10 then
-
 			VAR_1 = '0' .. tostring(i)
-
 		else
-
 			VAR_1 = tostring(i)
-
 		end
 
 		local VAR_2 = string.upper(string.sub(k, 1, 1))
@@ -293,13 +267,9 @@ applications = function(matrix)
 
 		local VAR_4 = ''
 		if i < 10 then
-
 			VAR_4 = '0' .. tostring(i)
-
 		else
-
 			VAR_4 = tostring(i)
-
 		end
 
 		i = i + 1
@@ -334,20 +304,13 @@ shapes = function(matrix)
 
 		local currLetter = string.upper(string.sub(k, 1, 1))
 		if i == 0 then
-
 			lastLetter = currLetter
-
 		else
-
 			if lastLetter == currLetter then
-
 				counter_Y = counter_Y + 1
-
 			else
-
 				lastLetter = currLetter
 				counter_Y = 0
-
 			end
 
 		end
@@ -377,7 +340,7 @@ buttons = function(matrix)
 		return
 	end
 
-	local PART_0 = '[ExtraButton]\nMeter=Button\nButtonImage=#@#Images\\zpecial.png\nX=#XTRA#\nY=#YSTART#\nButtonCommand=[!ToggleConfig "MiniMal\\Settings" "Settings.ini"]\n'
+	local PART_0 = '[ExtraButton]\nMeter=Shape\nShape=Path drawTriangle | Fill Color #MainColor#\ndrawTriangle=(#XTRA# - 1), (#YSTART# - 0.5) | LineTo (#XTRA# + 49), #YSTART# | LineTo (#XTRA# - 1), (#YSTART# + 51.5) | ClosePath 1\nLeftMouseUpAction=[!ToggleConfig "MiniMal\\Settings" "Settings.ini"]\n'
 	local PART_1 = '\n[Button'
 	local PART_2 = ']\nMeter=Shape\nShape=Rectangle #X'
 	local PART_3 = '#,(#YSTART#),50,50 | StrokeWidth 0 | Fill Color #MainColor#\nLeftMouseUpAction='
@@ -405,39 +368,26 @@ buttons = function(matrix)
 
 			local currLetter = string.upper(string.sub(k, 1, 1))
 			if j == 0 then
-
 				lastLetter = currLetter
-
 			else
-
 				if lastLetter == currLetter then
-
 					counter_Y = counter_Y + 1
-
 				else
-
 					lastLetter = currLetter
 					counter_Y = 0
-
 				end
-
 			end
 
 			local VAR_2 = ''
 			if string.upper(string.sub(k, 1, 1)) == row_char then
-
 				VAR_2 = '[!ToggleMeter ' .. string.upper(string.sub(k, 1, 1)) .. tostring(counter_Y) .. ']'
-
 			else
-
 				VAR_2 = '[!HideMeter ' .. string.upper(string.sub(k, 1, 1)) .. tostring(counter_Y) .. ']'
-
 			end
 
 			File:write(VAR_2)
 
 			j = j + 1
-
 		end
 
 		local VAR_3 = VAR_0
@@ -478,21 +428,15 @@ variables = function(matrix)
 		local currLetter = string.upper(string.sub(k, 1, 1))
 
 		if i == 0 then
-		
 			lastLetter = currLetter
-
 		end
 
 		if lastLetter == currLetter then
-
 			local temp = maxList[#maxList] + 1
 			table.remove(maxList, #maxList)
 			table.insert(maxList, temp)
-
 		else
-
 			table.insert(maxList, 1)
-
 		end
 
 		i = i + 1
@@ -525,7 +469,6 @@ variables = function(matrix)
 	File:write(PART_0)
 
 	for i = 0, (max - 1) do
-
 		local VAR_0 = tostring(i)
 		local VAR_1 = VAR_0
 
@@ -551,9 +494,7 @@ spairs = function(t)
     return function()
         i = i + 1
         if keys[i] then
-
             return keys[i], t[keys[i]]
-
         end
     end
 
