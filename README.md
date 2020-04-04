@@ -17,9 +17,7 @@ Programs are alphabetically displayed for **ease of use**.
 
       True **BLACK**
       Slick **WHITE**
-
-***************************
-
+      
 
 **INSTRUCTIONS**
 
