@@ -4,7 +4,7 @@ Rainmeter skin
 ## THE EVOLUTION OF MINIMAL DESKTOP
 
 
-### MiniMal program launcher is here!
+### MiniMal Launcher is here!
 
 **No more** desktop clutter.  
 **No need** for desktop shortcuts.  
