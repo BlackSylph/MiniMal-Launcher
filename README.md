@@ -15,8 +15,10 @@ Programs are alphabetically displayed for **ease of use**.
 
 ***BRAND NEW SKIN THEMES***
 
-      True **BLACK**
-      Slick **WHITE**
+True **BLACK**
+Slick **WHITE**
+
+***************************
       
 
 **INSTRUCTIONS**
