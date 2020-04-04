@@ -31,7 +31,8 @@ To change the theme:
 To insert a program:
 1.Press the last button of the skin
 2.Fill the 'Program name' and 'Program path' fields
-3.Press the first 'SUBMIT' button
+3.Fill the 'Launch parameters' field (optional)
+4.Press the first 'SUBMIT' button
 
 To remove a program:
 1.Press the last button of the skin
@@ -41,4 +42,4 @@ To remove a program:
 
 *Minimum requirements*
 - Windows 7
-- Rainmeter 4.3.0.3298
+- Rainmeter 4.3.1.3321
