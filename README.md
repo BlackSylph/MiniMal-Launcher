@@ -1,6 +1,8 @@
 # MiniMal Launcher
 Rainmeter skin
 
+Official link: https://www.deviantart.com/karamalisg/art/MiniMal-Launcher-806890895
+
 ## THE EVOLUTION OF MINIMAL DESKTOP
 
 
