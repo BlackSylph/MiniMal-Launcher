@@ -340,7 +340,7 @@ buttons = function(matrix)
 		return
 	end
 
-	local PART_0 = '[ExtraButton]\nMeter=Shape\nShape=Path drawTriangle | Fill Color #MainColor#\ndrawTriangle=(#XTRA# - 1), (#YSTART# - 0.5) | LineTo (#XTRA# + 49), #YSTART# | LineTo (#XTRA# - 1), (#YSTART# + 51.5) | ClosePath 1\nLeftMouseUpAction=[!ToggleConfig "MiniMal\\Settings" "Settings.ini"]\n'
+	local PART_0 = '[ExtraButton]\nMeter=Shape\nShape=Path drawTriangle | Fill Color #MainColor# | StrokeWidth 0\ndrawTriangle=(#XTRA# - 1), (#YSTART#) | LineTo (#XTRA# + 49), #YSTART# | LineTo (#XTRA# - 1), (#YSTART# + 50) | ClosePath 1\nLeftMouseUpAction=[!ToggleConfig "MiniMal\\Settings" "Settings.ini"]\n'
 	local PART_1 = '\n[Button'
 	local PART_2 = ']\nMeter=Shape\nShape=Rectangle #X'
 	local PART_3 = '#,(#YSTART#),50,50 | StrokeWidth 0 | Fill Color #MainColor#\nLeftMouseUpAction='
