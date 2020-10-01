@@ -11,58 +11,32 @@ function Update()
 	local ButtonPressedVariable = SKIN:GetVariable('ButtonPressed')
 
 	if ButtonPressedVariable == '0' then
-		if AddNameVariable == 'Program name' and AddPathVariable == 'Program path' then
 
-			local SuccessInputHidden = SKIN:GetVariable('SuccessInputHidden')
-			if SuccessInputHidden == '0' then
-				SKIN:Bang('!SetVariable', 'SuccessInputHidden', '1')
-			end
+		if AddNameVariable == 'Program name' or AddPathVariable == 'Program path' then
 
-			local WrongInputHidden = SKIN:GetVariable('WrongInputHidden')
-			if WrongInputHidden == '1' then
-				SKIN:Bang('!SetVariable', 'WrongInputHidden', '0')
-			end
+			SKIN:Bang('!SetVariable', 'SuccessInputHidden', '1')
+			SKIN:Bang('!SetVariable', 'WrongInputHidden', '0')
 
 		else
 
-			local WrongInputHidden = SKIN:GetVariable('WrongInputHidden')
-			if WrongInputHidden == '0' then
-				SKIN:Bang('!SetVariable', 'WrongInputHidden', '1')
-			end
-
-			local SuccessInputHidden = SKIN:GetVariable('SuccessInputHidden')
-			if SuccessInputHidden == '1' then
-				SKIN:Bang('!SetVariable', 'SuccessInputHidden', '0')
-			end
+			SKIN:Bang('!SetVariable', 'WrongInputHidden', '1')
+			SKIN:Bang('!SetVariable', 'SuccessInputHidden', '0')
 
 			add(AddNameVariable, AddPathVariable, AddParametersVariable)
 
 		end
 
 	elseif ButtonPressedVariable == '1' then
+
 		if RemoveNameVariable == 'Program name' then
 
-			local SuccessInputHidden = SKIN:GetVariable('SuccessInputHidden')
-			if SuccessInputHidden == '0' then
-				SKIN:Bang('!SetVariable', 'SuccessInputHidden', '1')
-			end
-
-			local WrongInputHidden = SKIN:GetVariable('WrongInputHidden')
-			if WrongInputHidden == '1' then
-				SKIN:Bang('!SetVariable', 'WrongInputHidden', '0')
-			end
+			SKIN:Bang('!SetVariable', 'SuccessInputHidden', '1')
+			SKIN:Bang('!SetVariable', 'WrongInputHidden', '0')
 
 		else
 
-			local WrongInputHidden = SKIN:GetVariable('WrongInputHidden')
-			if WrongInputHidden == '0' then
-				SKIN:Bang('!SetVariable', 'WrongInputHidden', '1')
-			end
-
-			local SuccessInputHidden = SKIN:GetVariable('SuccessInputHidden')
-			if SuccessInputHidden == '1' then
-				SKIN:Bang('!SetVariable', 'SuccessInputHidden', '0')
-			end
+			SKIN:Bang('!SetVariable', 'WrongInputHidden', '1')
+			SKIN:Bang('!SetVariable', 'SuccessInputHidden', '0')
 
 			remove(RemoveNameVariable)
 			
@@ -340,15 +314,15 @@ buttons = function(matrix)
 		return
 	end
 
-	local PART_0 = '[ExtraButton]\nMeter=Shape\nShape=Path drawTriangle | Fill Color #MainColor# | StrokeWidth 0\ndrawTriangle=(#XTRA# - 1), (#YSTART#) | LineTo (#XTRA# + 49), #YSTART# | LineTo (#XTRA# - 1), (#YSTART# + 50) | ClosePath 1\nLeftMouseUpAction=[!ToggleConfig "MiniMal\\Settings" "Settings.ini"]\n'
+	local PART_0 = '[ExtraButton]\nMeter=Shape\nShape=Path drawTriangle | Fill Color #MainColor# | StrokeWidth 1 | Stroke Color #MainColor#\ndrawTriangle=(#XTRA# - 1), (#YSTART#) | LineTo (#XTRA# + (#ButtonSize#)), #YSTART# | LineTo (#XTRA# - 1), (#YSTART# + #ButtonSize#) | ClosePath 1\nLeftMouseUpAction=[!ToggleConfig "MiniMal\\Settings" "Settings.ini"]\n'
 	local PART_1 = '\n[Button'
 	local PART_2 = ']\nMeter=Shape\nShape=Rectangle #X'
-	local PART_3 = '#,(#YSTART#),50,50 | StrokeWidth 0 | Fill Color #MainColor#\nLeftMouseUpAction='
+	local PART_3 = '#,(#YSTART#),#ButtonSize#,#ButtonSize# | StrokeWidth 1 | Stroke Color #MainColor# | Fill Color #MainColor#\nLeftMouseUpAction='
 	local PART_4 = '\n\n[Button'
 	local PART_5 = 'Str]\nMeter=String\nText='
 	local PART_6 = '\nX=#X'
-	local PART_7 = '# + 25 - ([Button'
-	local PART_8 = 'Str:W] / 2)\nY=#YSTART# + 25 - ([Button'
+	local PART_7 = '# + (#ButtonSize# / 2) - ([Button'
+	local PART_8 = 'Str:W] / 2)\nY=#YSTART# + (#ButtonSize# / 2) - ([Button'
 	local PART_9 = 'Str:H] / 2)\nFontColor=#SecondaryColor#\nFontSize=(#FontSize# + 11)\nFontFace=#FontFace#\nDynamicVariables=1'
 
 	File:write(PART_0)
@@ -457,9 +431,9 @@ variables = function(matrix)
 
 	local PART_0 = ''
 	if mode == '0,0,0' then
-		PART_0 = '[Variables]\nMainColor=0,0,0\nSecondaryColor=255,255,255\nXSTART=(#SCREENAREAWIDTH# / 2 - 675)\nYSTART=(#SCREENAREAHEIGHT# - 90)\nXA=(#XSTART# + (50 * 0))\nXB=(#XSTART# + (50 * 1))\nXC=(#XSTART# + (50 * 2))\nXD=(#XSTART# + (50 * 3))\nXE=(#XSTART# + (50 * 4))\nXF=(#XSTART# + (50 * 5))\nXG=(#XSTART# + (50 * 6))\nXH=(#XSTART# + (50 * 7))\nXI=(#XSTART# + (50 * 8))\nXJ=(#XSTART# + (50 * 9))\nXK=(#XSTART# + (50 * 10))\nXL=(#XSTART# + (50 * 11))\nXM=(#XSTART# + (50 * 12))\nXN=(#XSTART# + (50 * 13))\nXO=(#XSTART# + (50 * 14))\nXP=(#XSTART# + (50 * 15))\nXQ=(#XSTART# + (50 * 16))\nXR=(#XSTART# + (50 * 17))\nXS=(#XSTART# + (50 * 18))\nXT=(#XSTART# + (50 * 19))\nXU=(#XSTART# + (50 * 20))\nXV=(#XSTART# + (50 * 21))\nXW=(#XSTART# + (50 * 22))\nXX=(#XSTART# + (50 * 23))\nXY=(#XSTART# + (50 * 24))\nXZ=(#XSTART# + (50 * 25))\nXTRA=(#XSTART# + (50 * 26))\nYBASE=(#YSTART# - 28)'
+		PART_0 = '[Variables]\nMainColor=0,0,0\nSecondaryColor=255,255,255\nButtonSize=(#SCREENAREAWIDTH# / 31)\nXSTART=(#ButtonSize# * 2)\nYSTART=(#WORKAREAHEIGHT# - #ButtonSize#)\nXA=(#XSTART# + (#ButtonSize# * 0))\nXB=(#XSTART# + (#ButtonSize# * 1))\nXC=(#XSTART# + (#ButtonSize# * 2))\nXD=(#XSTART# + (#ButtonSize# * 3))\nXE=(#XSTART# + (#ButtonSize# * 4))\nXF=(#XSTART# + (#ButtonSize# * 5))\nXG=(#XSTART# + (#ButtonSize# * 6))\nXH=(#XSTART# + (#ButtonSize# * 7))\nXI=(#XSTART# + (#ButtonSize# * 8))\nXJ=(#XSTART# + (#ButtonSize# * 9))\nXK=(#XSTART# + (#ButtonSize# * 10))\nXL=(#XSTART# + (#ButtonSize# * 11))\nXM=(#XSTART# + (#ButtonSize# * 12))\nXN=(#XSTART# + (#ButtonSize# * 13))\nXO=(#XSTART# + (#ButtonSize# * 14))\nXP=(#XSTART# + (#ButtonSize# * 15))\nXQ=(#XSTART# + (#ButtonSize# * 16))\nXR=(#XSTART# + (#ButtonSize# * 17))\nXS=(#XSTART# + (#ButtonSize# * 18))\nXT=(#XSTART# + (#ButtonSize# * 19))\nXU=(#XSTART# + (#ButtonSize# * 20))\nXV=(#XSTART# + (#ButtonSize# * 21))\nXW=(#XSTART# + (#ButtonSize# * 22))\nXX=(#XSTART# + (#ButtonSize# * 23))\nXY=(#XSTART# + (#ButtonSize# * 24))\nXZ=(#XSTART# + (#ButtonSize# * 25))\nXTRA=(#XSTART# + (#ButtonSize# * 26))\nYBASE=(#YSTART# - 28)'
 	else
-		PART_0 = '[Variables]\nMainColor=255,255,255\nSecondaryColor=0,0,0\nXSTART=(#SCREENAREAWIDTH# / 2 - 675)\nYSTART=(#SCREENAREAHEIGHT# - 90)\nXA=(#XSTART# + (50 * 0))\nXB=(#XSTART# + (50 * 1))\nXC=(#XSTART# + (50 * 2))\nXD=(#XSTART# + (50 * 3))\nXE=(#XSTART# + (50 * 4))\nXF=(#XSTART# + (50 * 5))\nXG=(#XSTART# + (50 * 6))\nXH=(#XSTART# + (50 * 7))\nXI=(#XSTART# + (50 * 8))\nXJ=(#XSTART# + (50 * 9))\nXK=(#XSTART# + (50 * 10))\nXL=(#XSTART# + (50 * 11))\nXM=(#XSTART# + (50 * 12))\nXN=(#XSTART# + (50 * 13))\nXO=(#XSTART# + (50 * 14))\nXP=(#XSTART# + (50 * 15))\nXQ=(#XSTART# + (50 * 16))\nXR=(#XSTART# + (50 * 17))\nXS=(#XSTART# + (50 * 18))\nXT=(#XSTART# + (50 * 19))\nXU=(#XSTART# + (50 * 20))\nXV=(#XSTART# + (50 * 21))\nXW=(#XSTART# + (50 * 22))\nXX=(#XSTART# + (50 * 23))\nXY=(#XSTART# + (50 * 24))\nXZ=(#XSTART# + (50 * 25))\nXTRA=(#XSTART# + (50 * 26))\nYBASE=(#YSTART# - 28)'
+		PART_0 = '[Variables]\nMainColor=255,255,255\nSecondaryColor=0,0,0\nButtonSize=(#SCREENAREAWIDTH# / 31)\nXSTART=(#ButtonSize# * 2)\nYSTART=(#WORKAREAHEIGHT# - #ButtonSize#)\nXA=(#XSTART# + (#ButtonSize# * 0))\nXB=(#XSTART# + (#ButtonSize# * 1))\nXC=(#XSTART# + (#ButtonSize# * 2))\nXD=(#XSTART# + (#ButtonSize# * 3))\nXE=(#XSTART# + (#ButtonSize# * 4))\nXF=(#XSTART# + (#ButtonSize# * 5))\nXG=(#XSTART# + (#ButtonSize# * 6))\nXH=(#XSTART# + (#ButtonSize# * 7))\nXI=(#XSTART# + (#ButtonSize# * 8))\nXJ=(#XSTART# + (#ButtonSize# * 9))\nXK=(#XSTART# + (#ButtonSize# * 10))\nXL=(#XSTART# + (#ButtonSize# * 11))\nXM=(#XSTART# + (#ButtonSize# * 12))\nXN=(#XSTART# + (#ButtonSize# * 13))\nXO=(#XSTART# + (#ButtonSize# * 14))\nXP=(#XSTART# + (#ButtonSize# * 15))\nXQ=(#XSTART# + (#ButtonSize# * 16))\nXR=(#XSTART# + (#ButtonSize# * 17))\nXS=(#XSTART# + (#ButtonSize# * 18))\nXT=(#XSTART# + (#ButtonSize# * 19))\nXU=(#XSTART# + (#ButtonSize# * 20))\nXV=(#XSTART# + (#ButtonSize# * 21))\nXW=(#XSTART# + (#ButtonSize# * 22))\nXX=(#XSTART# + (#ButtonSize# * 23))\nXY=(#XSTART# + (#ButtonSize# * 24))\nXZ=(#XSTART# + (#ButtonSize# * 25))\nXTRA=(#XSTART# + (#ButtonSize# * 26))\nYBASE=(#YSTART# - 28)'
 	end
 
 	local PART_1 = '\nY'
