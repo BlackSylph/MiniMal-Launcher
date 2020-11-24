@@ -60,7 +60,7 @@ add = function(name, path, parameters)
 	-- LOAD APPLICATIONNAMES.INC & APPLICATIONPATHS.INC --
 	loadApplicationFiles(ApplicationNames, ApplicationPaths)
 
-	if parameters == 'Launch parameters (optional)' then
+	if parameters == 'Parameters (optional)' then
 		matrix[name] = path
 	else
 		matrix[name] = path .. ' "' .. parameters ..'"'
